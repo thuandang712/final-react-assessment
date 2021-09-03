@@ -4,20 +4,18 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My messaging system.</h1>
+      {/* create functionality for following:
+
+      - Ability to create new messages
+      - Ability to click on a single message and view it with conditional rendering
+      - Ability to edit single message
+      - Ability to delete single message
+
+      -- By default, the user should see the input field for creating a new message. Under the input field, all messages that have been created should appear. 
+
+      -- Techniques used: conditional rendering, controlled components, passing state as props
+      */}
     </div>
   );
 }
