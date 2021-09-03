@@ -1,27 +1,84 @@
-import logo from './logo.svg';
+import React from 'react'
+import Loading from './components/Loading';
+import SingleMessage from './components/SingleMessage';
+import MessagePostForm from './components/MessagePostForm';
+import Messages from './components/Messages';
+
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>My messaging system.</h1>
-      {/* create functionality for following:
 
-      - Ability to create new messages
-      - Ability to click on a single message and view it with conditional rendering
-      - Ability to edit single message
-      - Ability to delete single message
+class App extends React.Component {
 
-      -- By default, the user should see the input field for creating a new message. Under the input field, all messages that have been created should appear. 
+  state = {
+    messages: [
+      // {
+      //   userName: '',
+      //   messageBody: '',
+      //   id: 'uuid'
+      // }
+    ],
+    loading: false,
+    singleMessage: null
+  }
+  
+  
+  render() {
+    const {messages, loading, singleMessage} = this.state
+    
+    // add 
+    const addMessage = (obj) => {
+      const id = uuidv4()
+      obj.id = id
+      this.setState({messages: [...messages, obj]})
+    }
 
-      -- Techniques used: conditional rendering, controlled components, passing state as props
+    // delete
+    const deleteMessage = (id) => {
+      this.setState({messages: messages.filter(message => message.id !== id)})
+    }
 
-      -- Each message should have a messageBody, a userName, and a unique ID.
+    // select single message
+    const selectSingleMessage = (message) => {
+      this.setState({singleMessage: message})
+    }
 
-      -- Packages to use: axios, uuid (for creating unique id for each message).
-      */}
-    </div>
-  );
+    // clear single message
+    const clearSingleMessage = () => {
+      this.setState({singleMessage: null})
+    }
+
+    // edit message 
+    const editMessage = (obj) => {
+      const updated = messages.map(message => {
+        if (obj.id === message.id) {
+          message.messageBody = obj.messageBody
+        }
+        return message
+      })
+      this.setState({messages: updated})
+      this.setState({singleMessage: null})
+    }
+
+
+    // conditional rendering
+    if (loading) {
+      return <Loading />
+    }
+
+    if (singleMessage) {
+      return <SingleMessage singleMessage={singleMessage} clearSingleMessage={clearSingleMessage} editMessage={editMessage}/>
+    }
+
+    return (
+      <div className="App">
+        <h1>My messaging system.</h1>
+        <MessagePostForm addMessage={addMessage}/>
+        <Messages messages={messages} deleteMessage={deleteMessage} selectSingleMessage={selectSingleMessage}/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
