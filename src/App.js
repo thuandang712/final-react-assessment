@@ -35,6 +35,9 @@ class App extends React.Component {
       if (obj.userName.length === 0 || obj.messageBody.length === 0) {
         // alert ('Please enter user name and message body')
         this.setState({empty: true})
+        setTimeout( () => {
+          this.setState({empty: false})
+        }, 2000)
       } else {
         this.setState({messages: [...messages, obj]})
         // this.setState({empty: false})
@@ -68,13 +71,6 @@ class App extends React.Component {
       this.setState({singleMessage: null})
     }
 
-    // render error comp 
-    // const renderError = () => {
-    //   setTimeout(() =>{
-    //     return <Error/>
-    //   }, 2000)
-    // }
-
     // conditional rendering
     if (loading) {
       return <Loading />
@@ -84,20 +80,12 @@ class App extends React.Component {
       return <SingleMessage singleMessage={singleMessage} clearSingleMessage={clearSingleMessage} editMessage={editMessage}/>
     }
 
-    if (empty) {
-      setTimeout( () => {
-        this.setState({empty: false})
-      }, 2000)
-      return <Error/>
-    }
 
     return (
       <div className="container">
         <h1 className='title'>My messaging system.</h1>
         <MessagePostForm addMessage={addMessage}/>
-        {/* {empty && setTimeout( () => {
-          return <Error/>
-        }), 2000} */}
+        {empty && <Error/>}
         <Messages messages={messages} deleteMessage={deleteMessage} selectSingleMessage={selectSingleMessage}/>
       </div>
     );
