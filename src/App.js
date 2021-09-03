@@ -15,6 +15,10 @@ function App() {
       -- By default, the user should see the input field for creating a new message. Under the input field, all messages that have been created should appear. 
 
       -- Techniques used: conditional rendering, controlled components, passing state as props
+
+      -- Each message should have a messageBody, a userName, and a unique ID.
+
+      -- Packages to use: axios, uuid (for creating unique id for each message).
       */}
     </div>
   );
