@@ -3,6 +3,7 @@ import Loading from './components/Loading';
 import SingleMessage from './components/SingleMessage';
 import MessagePostForm from './components/MessagePostForm';
 import Messages from './components/Messages';
+import Error from './components/Error'
 
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
@@ -19,18 +20,25 @@ class App extends React.Component {
       // }
     ],
     loading: false,
-    singleMessage: null
+    singleMessage: null,
+    empty: false
   }
   
   
   render() {
-    const {messages, loading, singleMessage} = this.state
+    const {messages, loading, singleMessage, empty} = this.state
     
     // add 
     const addMessage = (obj) => {
       const id = uuidv4()
       obj.id = id
-      this.setState({messages: [...messages, obj]})
+      if (obj.userName.length === 0 || obj.messageBody.length === 0) {
+        // alert ('Please enter user name and message body')
+        this.setState({empty: true})
+      } else {
+        this.setState({messages: [...messages, obj]})
+        this.setState({empty: false})
+      }
     }
 
     // delete
@@ -74,6 +82,7 @@ class App extends React.Component {
       <div className="container">
         <h1 className='title'>My messaging system.</h1>
         <MessagePostForm addMessage={addMessage}/>
+        {empty && <Error/>}
         <Messages messages={messages} deleteMessage={deleteMessage} selectSingleMessage={selectSingleMessage}/>
       </div>
     );
