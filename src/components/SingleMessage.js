@@ -16,12 +16,12 @@ class SingleMessage extends React.Component {
         }
 
         return (
-            <div>
-                <h1>Single Message</h1>
-                <h2>{singleMessage.userName}</h2>
-                <p>{singleMessage.messageBody}</p>
-                <button onClick={()=> clearSingleMessage()}>Back</button>
-                <button onClick={handleEdit}>Edit</button>
+            <div className='container'>
+                <h1 className='title'>Single Message</h1>
+                <h2 className='user-name'>{singleMessage.userName}</h2>
+                <p className='msg-body'>{singleMessage.messageBody}</p>
+                <button className='back-btn' onClick={()=> clearSingleMessage()}>Back</button>
+                <button className='edit-btn' onClick={handleEdit}>Edit</button>
                 {edit && <EditMessage editMessage={editMessage} singleMessage={singleMessage}/>}
             </div>
         )

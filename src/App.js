@@ -71,8 +71,8 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App">
-        <h1>My messaging system.</h1>
+      <div className="container">
+        <h1 className='title'>My messaging system.</h1>
         <MessagePostForm addMessage={addMessage}/>
         <Messages messages={messages} deleteMessage={deleteMessage} selectSingleMessage={selectSingleMessage}/>
       </div>

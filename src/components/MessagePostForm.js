@@ -28,8 +28,8 @@ class MessagePostForm extends React.Component {
 
 
         return (
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form className='post-form' onSubmit={handleSubmit}>
+                <div className='user-name-form'>
                     <label>User Name: </label>
                     <input type="text"
                     className="label"
@@ -39,7 +39,7 @@ class MessagePostForm extends React.Component {
                     />
                 </div>
                 
-                <div>
+                <div className='msg-body-form'>
                     <label>Message Body: </label>
                     <input type="text"
                     className="label"
@@ -49,7 +49,10 @@ class MessagePostForm extends React.Component {
                     />
                 </div>
 
-                <input type="submit" className="btn"/>
+                <div className='submit-form'>
+                    <input type="submit" className="submit-btn"/>
+                </div>
+
             </form>
         )
     }

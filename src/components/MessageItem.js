@@ -7,10 +7,10 @@ const MessageItem = ({message, deleteMessage, selectSingleMessage}) => {
     }
 
     return (
-        <div>
-            <h1 onClick={() => selectSingleMessage(message)}>{message.userName}</h1>
-            <p>{message.messageBody}</p>
-            <button id={message.id} onClick={handleDelete}>Delete</button>
+        <div className='grid-items'>
+            <h1 className='user-name' onClick={() => selectSingleMessage(message)}>{message.userName}</h1>
+            <p className='msg-body'>{message.messageBody}</p>
+            <button className='delete-btn' id={message.id} onClick={handleDelete}>Delete</button>
         </div>
     )   
 }

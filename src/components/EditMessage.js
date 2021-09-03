@@ -28,7 +28,7 @@ class EditMessage extends React.Component {
                 <label>Message Body: </label>
                 <input type="text"
                 className="label"
-                placeholder="Message Body"
+                placeholder={singleMessage.messageBody}
                 value={msgBodyText}
                 onChange={handleChangeMsgBody}
                 />
